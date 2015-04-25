@@ -1,5 +1,6 @@
 library(stringr)
 
+# The following function reads files, and combines them into a data.frame:
 get.data.frame <- function(file.names) {
   tmp <- as.data.frame(read.table(file.names[1]))
   if(length(file.names)>1) {
@@ -9,6 +10,7 @@ get.data.frame <- function(file.names) {
   tmp
 }
 
+# The following is the most important function, which reads in data from the appropriate data set:
 read.in.data <- function(data.set="test") {
   
   path.to.dir <- sprintf("UCI HAR Dataset/%s",data.set)
@@ -39,7 +41,7 @@ test.df <- read.in.data("test")
 train.df <- read.in.data("train")
   
 # I assert that there are different subjects in the test data set and the train data set:
-assert(length(intersect(levels(a$subject),levels(b$subject)))) 
+#assert(length(intersect(levels(a$subject),levels(b$subject)))) 
   
 total.df <- rbind(test.df,train.df)
 non.tidy.names <- names(total.df)
@@ -57,3 +59,5 @@ for(sub in levels(total.df$subject)) {
 
 tidy.data.df <- as.data.frame(tidy.data.matrix)
 names(tidy.data.df) <- tidy.names
+
+write.table(tidy.data.df,"tidy.txt",row.names=F)
