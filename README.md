@@ -1,7 +1,4 @@
----
-title: "Getting And Cleaning Data - My Project"
-output: html_document
----
+## Getting And Cleaning Data - My Project
 
 I'll make it short.
 
